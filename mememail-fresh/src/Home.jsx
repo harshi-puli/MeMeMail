@@ -35,8 +35,11 @@ function Home() {
         </div>
 
         <div className="content-section">
-          <h3>Your Dashboard</h3>
-          <p>This is where your content will go!</p>
+          <h3>My Reminders</h3>
+          <p>No reminders set up...</p>
+            <button onClick={handleLogout} className="logout-button">
+                Add Reminder
+            </button>
         </div>
       </main>
     </div>

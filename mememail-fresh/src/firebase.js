@@ -1,15 +1,16 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration using environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyCQz0oILC1WYcVa021eQqOIYYB_vJkucDI",
-  authDomain: "mememail-32495.firebaseapp.com",
-  projectId: "mememail-32495",
-  storageBucket: "mememail-32495.firebasestorage.app",
-  messagingSenderId: "789582472436",
-  appId: "1:789582472436:web:ad2dcda2ba8fd786d12aa1",
-  measurementId: "G-N261E7Y9BN"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -17,4 +18,8 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+
+// Initialize Firestore and get a reference to the service
+export const db = getFirestore(app);
+
 export default app;
