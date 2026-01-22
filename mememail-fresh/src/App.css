@@ -1,8 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&family=Major+Mono+Display&display=swap');
+
+/* CSS Variables for cohesive theming */
+:root {
+  --color-bg-primary: #cdedff;
+  --color-bg-secondary: #3b5580;
+  --color-accent-primary: #6175bc;
+  --color-accent-secondary: #1e2837;
+  --color-text-primary: #1a1b29;
+  --color-text-secondary: #1a3b89;
+  --color-card-bg: rgba(155, 185, 234, 0.661);
+  --color-card-border: rgb(42, 57, 79);
+  
+  --font-display: 'Playfair Display', serif;
+  --font-mono: 'Major Mono Display', monospace;
+  --font-body: 'DM Sans', sans-serif;
+  
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
 }
 
 .logo {
@@ -11,9 +53,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
