@@ -25,7 +25,5 @@ dist-ssr
 
 #no .env!
 .env
-
-#virtual environment
-.play
-
+backend/.env
+.env.local

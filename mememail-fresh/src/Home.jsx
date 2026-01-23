@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { auth } from './firebase'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { addReminder, getReminders, deleteReminder, toggleReminderComplete } from './reminderService.js'
+import { addReminder, getReminders, deleteReminder, toggleReminderComplete, scheduleReminderEmail} from './reminderService.js'
 import './Home.css'
 
 function Home() {
@@ -48,27 +48,33 @@ function Home() {
     e.preventDefault()
     
     try {
-      await addReminder({
+        const newReminder = {
         title,
         description,
         dueDate: new Date(dueDate),
         category
-      })
-      
-      // Reset form
-      setTitle('')
-      setDescription('')
-      setDueDate('')
-      setCategory('general')
-      setShowModal(false)
-      
-      // Reload reminders
-      loadReminders()
+        };
+        
+        // Add reminder to Firebase
+        await addReminder(newReminder);
+        
+        // Schedule email
+        await scheduleReminderEmail(user.email, newReminder);
+        
+        // Reset form
+        setTitle('')
+        setDescription('')
+        setDueDate('')
+        setCategory('general')
+        setShowModal(false)
+        
+        // Reload reminders
+        loadReminders()
     } catch (err) {
-      console.error('Error adding reminder:', err)
-      alert('Failed to add reminder')
+        console.error('Error adding reminder:', err)
+        alert('Failed to add reminder')
     }
-  }
+    }
 
   const handleDeleteReminder = async (id) => {
     try {

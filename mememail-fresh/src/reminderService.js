@@ -6,6 +6,7 @@ import {
   updateDoc, 
   deleteDoc,
   query,
+  where,
   orderBy,
   serverTimestamp 
 } from 'firebase/firestore';
@@ -57,6 +58,32 @@ export const getReminders = async () => {
   
   return reminders;
 };
+
+// Schedule reminder email via backend
+export const scheduleReminderEmail = async (userEmail, reminder) => {
+  try {
+    const response = await fetch('http://localhost:3001/schedule-reminder', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: userEmail,
+        reminder: reminder,
+        dueDate: reminder.dueDate
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to schedule email');
+    }
+    
+    return await response.json();
+  } catch (err) {
+    console.error('Error scheduling email:', err);
+    throw err;
+  }
+}
 
 // Update a reminder
 export const updateReminder = async (reminderId, updates) => {
