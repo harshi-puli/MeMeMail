@@ -26,3 +26,6 @@ dist-ssr
 #no .env!
 .env
 
+#virtual environment
+.play
+
