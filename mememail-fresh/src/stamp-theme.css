@@ -1,0 +1,246 @@
+/* Shared letter / postal theme: backgrounds, waves, decorative stamps with cute perforated edges */
+
+.letter-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(214, 128, 86, 0.22), transparent 28%),
+    radial-gradient(circle at 84% 16%, rgba(112, 153, 125, 0.2), transparent 30%),
+    radial-gradient(circle at 20% 88%, rgba(174, 113, 113, 0.2), transparent 24%),
+    radial-gradient(circle at 82% 82%, rgba(193, 167, 108, 0.2), transparent 25%),
+    linear-gradient(160deg, #fff4dd 0%, #ffe6c2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.mail-wave {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mail-wave::before,
+.mail-wave::after {
+  content: '';
+  position: absolute;
+  width: 130%;
+  height: 150px;
+  left: -15%;
+  border-top: 4px dotted rgba(141, 95, 66, 0.35);
+  border-radius: 50% 50% 0 0;
+}
+
+.mail-wave::before {
+  top: 26%;
+  transform: rotate(-6deg);
+  animation: wave-route 11s ease-in-out infinite;
+}
+
+.mail-wave::after {
+  top: 56%;
+  border-top-color: rgba(102, 140, 113, 0.35);
+  transform: rotate(4deg);
+  animation: wave-route 14s ease-in-out infinite reverse;
+}
+
+@keyframes wave-route {
+  0% {
+    transform: translateX(-2%) translateY(0) rotate(-5deg);
+  }
+  25% {
+    transform: translateX(1.5%) translateY(-6px) rotate(-3deg);
+  }
+  50% {
+    transform: translateX(-1%) translateY(4px) rotate(-6deg);
+  }
+  75% {
+    transform: translateX(2.5%) translateY(-3px) rotate(-4deg);
+  }
+  100% {
+    transform: translateX(-2%) translateY(0) rotate(-5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mail-wave::before,
+  .mail-wave::after {
+    animation: none;
+  }
+}
+
+/* Decorative corner stamps: perforated “teeth” border + cute inner pattern */
+.stamp-deco {
+  position: absolute;
+  width: 168px;
+  height: 168px;
+  z-index: 0;
+  pointer-events: none;
+  --edge: 11px;
+  padding: var(--edge);
+  border-radius: 5px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 50% 0, rgba(120, 82, 38, 0.42) 2px, transparent 2.6px) 0 0 / 11px var(--edge) repeat-x,
+    radial-gradient(circle at 50% 100%, rgba(120, 82, 38, 0.42) 2px, transparent 2.6px) 0 100% / 11px var(--edge) repeat-x,
+    radial-gradient(circle at 0 50%, rgba(120, 82, 38, 0.42) 2px, transparent 2.6px) 0 0 / var(--edge) 11px repeat-y,
+    radial-gradient(circle at 100% 50%, rgba(120, 82, 38, 0.42) 2px, transparent 2.6px) 100% 0 / var(--edge) 11px repeat-y,
+    linear-gradient(145deg, #ecd4a8 0%, #d4a574 45%, #c4935a 100%);
+  box-shadow:
+    0 10px 22px rgba(51, 37, 20, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.stamp-deco::after {
+  content: '';
+  position: absolute;
+  inset: var(--edge);
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #fffef6 0 14px,
+      #ef7070 14px 20px,
+      #fffef6 20px 34px,
+      #5f9f75 34px 40px
+    ),
+    radial-gradient(circle at 68% 34%, rgba(255, 170, 127, 0.45), transparent 45%);
+  box-shadow: inset 0 1px 2px rgba(80, 50, 30, 0.08);
+}
+
+.stamp-deco--tl {
+  top: 32px;
+  left: 32px;
+  transform: rotate(-11deg);
+}
+
+.stamp-deco--br {
+  right: 32px;
+  bottom: 32px;
+  transform: rotate(9deg);
+}
+
+/* Dashboard / modal: large panels with stamp perforations */
+.stamp-panel {
+  position: relative;
+  z-index: 1;
+  --panel-edge: 12px;
+  padding: var(--panel-edge);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(120, 82, 38, 0.32) 2px, transparent 2.6px) 0 0 / 12px var(--panel-edge) repeat-x,
+    radial-gradient(circle at 50% 100%, rgba(120, 82, 38, 0.32) 2px, transparent 2.6px) 0 100% / 12px var(--panel-edge) repeat-x,
+    radial-gradient(circle at 0 50%, rgba(120, 82, 38, 0.32) 2px, transparent 2.6px) 0 0 / var(--panel-edge) 12px repeat-y,
+    radial-gradient(circle at 100% 50%, rgba(120, 82, 38, 0.32) 2px, transparent 2.6px) 100% 0 / var(--panel-edge) 12px repeat-y,
+    linear-gradient(to bottom, rgba(255, 252, 243, 0.98) 0%, rgba(255, 246, 230, 0.99) 100%);
+  box-shadow:
+    0 14px 34px rgba(40, 27, 13, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+}
+
+.stamp-panel__surface {
+  position: relative;
+  z-index: 1;
+  border-radius: 5px;
+  padding: 2rem 2.25rem;
+  border: 2px dashed rgba(132, 100, 66, 0.22);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+/* Top bar on dashboard: same stamp edge, tighter padding */
+.stamp-panel--header {
+  --panel-edge: 10px;
+  position: relative;
+  z-index: 2;
+  margin: 1.25rem auto 0;
+  width: calc(100% - 2.5rem);
+  max-width: 1400px;
+  border-radius: 12px;
+}
+
+.stamp-panel--header .stamp-panel__surface {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.9rem 1.35rem;
+  border: 2px dashed rgba(132, 100, 66, 0.2);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* Reminder cards: smaller stamp border */
+.stamp-mini {
+  --mini-edge: 8px;
+  padding: var(--mini-edge);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(120, 82, 38, 0.3) 1.5px, transparent 2px) 0 0 / 9px var(--mini-edge) repeat-x,
+    radial-gradient(circle at 50% 100%, rgba(120, 82, 38, 0.3) 1.5px, transparent 2px) 0 100% / 9px var(--mini-edge) repeat-x,
+    radial-gradient(circle at 0 50%, rgba(120, 82, 38, 0.3) 1.5px, transparent 2px) 0 0 / var(--mini-edge) 9px repeat-y,
+    radial-gradient(circle at 100% 50%, rgba(120, 82, 38, 0.3) 1.5px, transparent 2px) 100% 0 / var(--mini-edge) 9px repeat-y,
+    linear-gradient(to bottom, #fffdf8 0%, #fdf5e8 100%);
+  box-shadow: 0 8px 22px rgba(40, 27, 13, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stamp-mini:hover {
+  box-shadow: 0 12px 28px rgba(40, 27, 13, 0.12);
+}
+
+.stamp-mini__surface {
+  border-radius: 5px;
+  padding: 1.15rem 1.25rem;
+  border: 1px dashed rgba(132, 100, 66, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.stamp-mini.completed {
+  opacity: 0.72;
+}
+
+.stamp-mini.completed .stamp-mini__surface {
+  background: rgba(248, 244, 236, 0.9);
+}
+
+@media (max-width: 768px) {
+  .stamp-panel--header {
+    width: calc(100% - 1.5rem);
+    margin-top: 1rem;
+  }
+
+  .stamp-panel--header .stamp-panel__surface {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .stamp-deco {
+    width: 120px;
+    height: 120px;
+    --edge: 8px;
+  }
+
+  .stamp-deco--tl {
+    top: 16px;
+    left: 14px;
+  }
+
+  .stamp-deco--br {
+    right: 14px;
+    bottom: 20px;
+  }
+
+  .mail-wave::before,
+  .mail-wave::after {
+    height: 110px;
+    border-top-width: 3px;
+  }
+
+  .stamp-panel__surface {
+    padding: 1.35rem 1.25rem;
+  }
+}

@@ -1,316 +1,312 @@
-/* Full Screen Layout */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap');
+@import './stamp-theme.css';
+
 .home-container {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--color-bg-primary);
-}
-
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #29221a;
 }
 
 .home-title {
   margin: 0;
-  color: var(--color-text-primary);
-  font-size: 2em;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #352316;
+  letter-spacing: -0.02em;
 }
 
 .logout-button {
-  padding: 10px 20px;
-  background: #050201;
-  color: white;
+  padding: 0.55rem 1.25rem;
+  background: linear-gradient(135deg, #2b4932 0%, #1f3626 100%);
+  color: #fffdf8;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 12px rgba(43, 73, 50, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .logout-button:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(43, 73, 50, 0.3);
 }
 
 .home-main {
   flex: 1;
-  padding: 40px 60px;
+  padding: 1.5rem 1.25rem 2.5rem;
   overflow-y: auto;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-}
-
-.welcome-card {
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .welcome-card h2 {
-  color: var(--color-text-secondary);
-  margin: 0 0 10px 0;
-  font-size: 2em;
+  margin: 0 0 0.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  color: #2b4932;
 }
 
 .user-email {
-  color: #666;
-  margin: 5px 0;
-  font-size: 1.1em;
+  color: #6b5344;
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
 }
 
 .welcome-message {
-  color: #888;
-  margin: 10px 0 0 0;
-  font-size: 1.1em;
+  color: #5a4a3d;
+  margin: 0.75rem 0 0;
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
-.content-section {
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.content-section-inner {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .section-header h3 {
   margin: 0;
-  color: #333;
-  font-size: 1.8em;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  color: #352316;
 }
 
 .add-button {
-  padding: 12px 24px;
-  background: var(--color-text-secondary);
-  color: white;
+  padding: 0.65rem 1.15rem;
+  background: linear-gradient(135deg, #4a7752 0%, #3a5f41 100%);
+  color: #fffdf8;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 14px rgba(74, 119, 82, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .add-button:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(74, 119, 82, 0.35);
 }
 
+.loading-text,
 .no-reminders {
-  color: #999;
-  font-size: 18px;
   text-align: center;
-  padding: 60px;
+  padding: 2rem 1rem;
+  color: #6b5344;
+  font-size: 1.05rem;
 }
 
 .reminders-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 1.1rem;
 }
 
-.reminder-card {
-  background: #f9f9f9;
-  padding: 25px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transition: transform 0.2s, box-shadow 0.2s;
+.stamp-mini:hover {
+  transform: translateY(-2px);
 }
 
-.reminder-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.reminder-card.completed {
-  opacity: 0.6;
-  border-left-color: #999;
-}
-
-.reminder-card.completed h4 {
+.stamp-mini.completed h4 {
   text-decoration: line-through;
-}
-
-.reminder-content {
-  flex: 1;
+  color: #7a6a5e;
 }
 
 .reminder-content h4 {
-  margin: 0 0 10px 0;
-  color: #333;
-  font-size: 1.3em;
+  margin: 0 0 0.5rem;
+  color: #352316;
+  font-size: 1.15rem;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .reminder-content p {
-  margin: 0 0 12px 0;
-  color: #666;
+  margin: 0 0 0.65rem;
+  color: #5a4a3d;
   line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 .reminder-meta {
   display: flex;
-  gap: 15px;
-  font-size: 14px;
-  color: #888;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: #7a6a5e;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .category {
-  background: var(--color-text-secondary);
-  color: white;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
+  background: linear-gradient(135deg, #4a7752 0%, #3d6644 100%);
+  color: #fffdf8;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .reminder-actions {
   display: flex;
-  gap: 10px;
+  gap: 0.65rem;
   flex-wrap: wrap;
+  padding-top: 0.25rem;
 }
 
 .toggle-button,
 .delete-button {
-  padding: 10px 18px;
+  padding: 0.55rem 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 14px;
-  transition: transform 0.2s;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   flex: 1;
-  min-width: 120px;
+  min-width: 110px;
 }
 
 .toggle-button {
-  background: var(--color-text-secondary);
-  color: white;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #4a7752 0%, #3a5f41 100%);
+  color: #fffdf8;
+  box-shadow: 0 3px 10px rgba(74, 119, 82, 0.22);
 }
 
 .delete-button {
-  background: var(--color-text-primary);
-  color: white;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #b1643e 0%, #8f4d2e 100%);
+  color: #fffdf8;
+  box-shadow: 0 3px 10px rgba(177, 100, 62, 0.22);
 }
 
 .toggle-button:hover,
 .delete-button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .reminders-list {
     grid-template-columns: 1fr;
   }
-  
+
   .home-main {
-    padding: 20px;
-  }
-  
-  .home-header {
-    padding: 20px;
+    padding: 1rem 1rem 2rem;
   }
 }
 
-/* Modal Styles */
+/* Modal */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(53, 35, 22, 0.45);
+  backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .modal-content {
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  max-width: 500px;
-  width: 90%;
+  max-width: 520px;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
 }
 
-.modal-content h2 {
-  color: var(--color-text-secondary);
-  margin-bottom: 25px;
+.modal-stamp-inner {
+  padding: 1.75rem 1.5rem;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.modal-stamp-inner h2 {
+  margin: 0 0 1.25rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #2b4932;
+  font-size: 1.5rem;
 }
 
-.form-group label {
+.modal-stamp-inner .form-group {
+  margin-bottom: 1rem;
+  background: transparent;
+}
+
+.modal-stamp-inner .form-group label {
   display: block;
-  margin-bottom: 8px;
-  color: #ffffff;
-  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: #352316;
+  font-weight: 600;
+  font-size: 0.92rem;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.modal-stamp-inner .form-group input,
+.modal-stamp-inner .form-group textarea,
+.modal-stamp-inner .form-group select {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(182, 124, 96, 0.42);
+  border-radius: 10px;
+  font-size: 1rem;
   font-family: inherit;
-  transition: border-color 0.3s;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 250, 239, 0.96),
+    rgba(255, 241, 222, 0.96)
+  );
+  color: #4a2f21;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.modal-stamp-inner .form-group input:focus,
+.modal-stamp-inner .form-group textarea:focus,
+.modal-stamp-inner .form-group select:focus {
   outline: none;
-  border-color: var(--color-text-secondary);
+  border-color: rgba(220, 130, 98, 0.85);
+  box-shadow: 0 0 0 4px rgba(226, 153, 119, 0.2);
 }
 
 .modal-buttons {
   display: flex;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
 }
 
 .cancel-button,
 .submit-button {
   flex: 1;
-  padding: 12px;
+  padding: 0.75rem;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .cancel-button {
-  background: #e0e0e0;
-  color: #333;
+  background: rgba(232, 220, 206, 0.95);
+  color: #4a2f21;
 }
 
 .submit-button {
-  background: var(--color-bg-primary);
-  color: white;
+  background: linear-gradient(135deg, #b1643e 0%, #8f4d2e 100%);
+  color: #fffdf8;
+  box-shadow: 0 4px 12px rgba(143, 77, 46, 0.28);
 }
 
 .cancel-button:hover,

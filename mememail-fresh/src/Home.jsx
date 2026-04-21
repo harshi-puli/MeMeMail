@@ -95,75 +95,99 @@ function Home() {
   }
 
   return (
-    <div className="home-container">
-      <header className="home-header">
-        <h1 className="home-title">MeMeMail!</h1>
-        <button onClick={handleLogout} className="logout-button">
-          Log Out
-        </button>
+    <div className="home-container letter-bg">
+      <div className="mail-wave" aria-hidden="true" />
+      <div className="stamp-deco stamp-deco--tl" aria-hidden="true" />
+      <div className="stamp-deco stamp-deco--br" aria-hidden="true" />
+
+      <header className="stamp-panel stamp-panel--header">
+        <div className="stamp-panel__surface home-header-inner">
+          <h1 className="home-title">MeMeMail</h1>
+          <button type="button" onClick={handleLogout} className="logout-button">
+            Log Out
+          </button>
+        </div>
       </header>
       
       <main className="home-main">
-        <div className="welcome-card">
-          <h2>Welcome back!</h2>
-          <p className="user-email">{user?.email}</p>
-          <p className="welcome-message">
-            You've successfully logged into MeMeMail! Keep track of your important tasks and reminders all in one place.
-          </p>
+        <div className="welcome-card stamp-panel">
+          <div className="stamp-panel__surface">
+            <h2>Welcome back!</h2>
+            <p className="user-email">{user?.email}</p>
+            <p className="welcome-message">
+              You&apos;ve successfully logged into MeMeMail! Keep track of your important tasks and reminders all in one place.
+            </p>
+          </div>
         </div>
 
-        <div className="content-section">
-          <div className="section-header">
-            <h3>My Reminders</h3>
-            <button onClick={() => setShowModal(true)} className="add-button">
-              + Add Reminder
-            </button>
-          </div>
+        <div className="content-section stamp-panel">
+          <div className="stamp-panel__surface content-section-inner">
+            <div className="section-header">
+              <h3>My Reminders</h3>
+              <button type="button" onClick={() => setShowModal(true)} className="add-button">
+                + Add Reminder
+              </button>
+            </div>
 
-          {loading ? (
-            <p>Loading reminders...</p>
-          ) : reminders.length === 0 ? (
-            <p className="no-reminders">No reminders yet. Click "Add Reminder" to get started!</p>
-          ) : (
-            <div className="reminders-list">
-              {reminders.map((reminder) => (
-                <div key={reminder.id} className={`reminder-card ${reminder.isCompleted ? 'completed' : ''}`}>
-                  <div className="reminder-content">
-                    <h4>{reminder.title}</h4>
-                    {reminder.description && <p>{reminder.description}</p>}
-                    <div className="reminder-meta">
-                      <span className="due-date">
-                        📅 {reminder.dueDate?.toDate?.()?.toLocaleDateString() || 'No date'}
-                      </span>
-                      <span className="category">{reminder.category}</span>
+            {loading ? (
+              <p className="loading-text">Loading reminders...</p>
+            ) : reminders.length === 0 ? (
+              <p className="no-reminders">No reminders yet. Click &quot;Add Reminder&quot; to get started!</p>
+            ) : (
+              <div className="reminders-list">
+                {reminders.map((reminder) => (
+                  <div
+                    key={reminder.id}
+                    className={`stamp-mini ${reminder.isCompleted ? 'completed' : ''}`}
+                  >
+                    <div className="stamp-mini__surface">
+                      <div className="reminder-content">
+                        <h4>{reminder.title}</h4>
+                        {reminder.description && <p>{reminder.description}</p>}
+                        <div className="reminder-meta">
+                          <span className="due-date">
+                            📅 {reminder.dueDate?.toDate?.()?.toLocaleDateString() || 'No date'}
+                          </span>
+                          <span className="category">{reminder.category}</span>
+                        </div>
+                      </div>
+                      <div className="reminder-actions">
+                        <button 
+                          type="button"
+                          onClick={() => handleToggleComplete(reminder.id, reminder.isCompleted)}
+                          className="toggle-button"
+                        >
+                          {reminder.isCompleted ? 'Undo' : 'Complete'}
+                        </button>
+                        <button 
+                          type="button"
+                          onClick={() => handleDeleteReminder(reminder.id)}
+                          className="delete-button"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div className="reminder-actions">
-                    <button 
-                      onClick={() => handleToggleComplete(reminder.id, reminder.isCompleted)}
-                      className="toggle-button"
-                    >
-                      {reminder.isCompleted ? 'Undo' : 'Complete'}
-                    </button>
-                    <button 
-                      onClick={() => handleDeleteReminder(reminder.id)}
-                      className="delete-button"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </main>
 
       {/* Add Reminder Modal */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Add New Reminder</h2>
+          <div
+            className="modal-content stamp-panel"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+          >
+            <div className="stamp-panel__surface modal-stamp-inner">
+            <h2 id="modal-title">Add New Reminder</h2>
             <form onSubmit={handleAddReminder}>
               <div className="form-group">
                 <label htmlFor="title">Title *</label>
@@ -223,6 +247,7 @@ function Home() {
                 </button>
               </div>
             </form>
+            </div>
           </div>
         </div>
       )}

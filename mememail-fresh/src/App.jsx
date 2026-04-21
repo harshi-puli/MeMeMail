@@ -73,9 +73,16 @@ function App() {
   }
 
   return (
-    <div className="login-container">
+    <div className="login-container letter-bg">
+      <div className="mail-wave" aria-hidden="true" />
+      <div className="stamp-deco stamp-deco--tl" aria-hidden="true" />
+      <div className="stamp-deco stamp-deco--br" aria-hidden="true" />
       <div className="login-card">
-        <h1 className="title">MeMeMail!</h1>
+        <p className="eyebrow">Welcome back</p>
+        <h1 className="title">MeMeMail</h1>
+        <p className="subtitle">
+          {isLogin ? 'Log in to keep your reminders on track.' : 'Create an account to get started.'}
+        </p>
         
         {error && <div className="error-message">{error}</div>}
         

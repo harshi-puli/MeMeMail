@@ -1,3 +1,14 @@
+/* imports needed functions from firebase {
+collection - the ability fro firebase to access a collection
+addDoc - to add a doc to a collection
+getDocs - to access information from a doc
+doc - lowk idk
+updateDoc - update a doc
+deleteDoc - delete a doc from a collection
+query.- asks for some docs from the collection
+serverTimeStamp - Current time when the functions are called. 
+} 
+*/
 import { 
   collection, 
   addDoc, 
